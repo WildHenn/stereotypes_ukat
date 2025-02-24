@@ -59,7 +59,7 @@ X_train_tfidf = vectorizer.fit_transform(X_train)
 X_test_tfidf = vectorizer.transform(X_test)
 
 # Step 6: Train a Classifier (logistic Regression)
-clf = LogisticRegression(class_weight='balanced', random_state=42)  # Use RandomForestClassifier
+clf = LogisticRegression(class_weight='balanced', random_state=42)  # Use LogisticRegeression
 clf.fit(X_train_tfidf, y_train)
 
 # Step 7: Make predictions on the test data
@@ -78,6 +78,6 @@ target_names = list(map(str, label_encoder.classes_))
 print(classification_report(y_test, y_pred, target_names=target_names))
 
 # Step 9: Save the trained model and vectorizer for future use (optional)
-joblib.dump(clf, "text_classifier_model_rf.pkl")  # Save the RandomForest model
+joblib.dump(clf, "text_classifier_model_rf.pkl")  # Save the LogisticRegression model
 joblib.dump(vectorizer, "tfidf_vectorizer.pkl")
 print("Model and vectorizer saved successfully.")
