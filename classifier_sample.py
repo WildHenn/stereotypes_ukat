@@ -3,12 +3,12 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from sklearn.ensemble import RandomForestClassifier  # Import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression  # Import Logistic Regression
 from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
 # Step 1: Load the labeled dataset (replace with your actual file path)
-df_labeled = pd.read_csv("filtered_sample_label.csv", encoding="utf-8")
+df_labeled = pd.read_csv("data/sample_classifier.csv", encoding="utf-8")
 
 # Check the first few rows to ensure the data is loaded correctly
 print("Loaded labeled dataset:")
@@ -58,8 +58,8 @@ vectorizer = TfidfVectorizer(stop_words="english")
 X_train_tfidf = vectorizer.fit_transform(X_train)
 X_test_tfidf = vectorizer.transform(X_test)
 
-# Step 6: Train a Random Forest model
-clf = RandomForestClassifier(class_weight='balanced', random_state=42)  # Use RandomForestClassifier
+# Step 6: Train a Classifier (logistic Regression)
+clf = LogisticRegression(class_weight='balanced', random_state=42)  # Use RandomForestClassifier
 clf.fit(X_train_tfidf, y_train)
 
 # Step 7: Make predictions on the test data
